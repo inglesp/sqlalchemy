@@ -161,7 +161,7 @@ def _inspects(
 ) -> Callable[[_F], _F]:
     def decorate(fn_or_cls: _F) -> _F:
         for type_ in types:
-            if type_ in _registrars:
+            if type_ in _registrars and _registrars[type_] != fn_or_cls:
                 raise AssertionError(
                     "Type %s is already " "registered" % type_
                 )
